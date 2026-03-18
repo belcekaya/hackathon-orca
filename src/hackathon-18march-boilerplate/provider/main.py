@@ -245,7 +245,6 @@ def create_car_rental_agent(openai_api_key: str) -> Agent:
             "Keep responses short and data-focused - another agent will format them for users.",
         ],
         markdown=False,
-        show_tool_calls=False,
     )
 
 
@@ -257,10 +256,10 @@ async def process_message(data: ChatMessage):
 
     try:
         variables = Variables(data.variables)
-        openai_key = variables.get("OPENAI_API_KEY")
+        openai_key = variables.get("MADHACK-OPENAI-KEY")
 
         if not openai_key:
-            session.stream("Error: OPENAI_API_KEY not configured in Orca variables.")
+            session.stream("Error: MADHACK-OPENAI-KEY not configured in Orca variables.")
             session.close()
             return
 
